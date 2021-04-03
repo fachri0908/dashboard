@@ -12,9 +12,11 @@ const {Title, Text} = Typography
 
 const Home = () => {
     const [selectedDate, setSelectedDate] = useState([moment().subtract(7, 'days'), moment().subtract(1,'days')])
+    const [turnOver, setTurnOver] = useState(3600000)
 
     const changePeriod = (dates) =>{
         setSelectedDate(dates)
+        setTurnOver(Math.floor(Math.random() * (20000000 - 1000000)) + 1000000)
     }
 
     const disabledDate = (current) => {
@@ -59,7 +61,7 @@ const Home = () => {
                     <DashboardBox title="Sales Turnover" extra={<MoreOutlined />}>
                         <Row>
                             <Col span={19}>
-                                <Title level={4}>Rp. 3,600,000</Title>
+                                <Title level={4}>Rp. {turnOver.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Title>
                                 <span style={{color:'red'}}> <ArrowDownOutlined />13.8% </span> last period in product sold
                             </Col>
                             <Col span={5} style={{textAlign:'center'}}>
